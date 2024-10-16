@@ -1,0 +1,141 @@
+#contact {
+    background: #000;
+    color: #fff;
+    height: 1000px;
+}
+#contact h2 {
+    color: #fff;
+    margin-top: 20px;
+}
+#contact>div:not(.add) {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#contact fieldset {
+    position: relative;
+    border: none;
+    text-align: center;
+    margin-bottom: 30px;
+}
+/* #contact>div>div, .contact fieldset {
+    flex: 1;
+    min-width: 300px;
+} */
+#contact .form_base:not(#send_bt) {
+    border-radius: 10px;
+    background: #414141;
+    color: #fff;
+    height: 46px;
+    min-width: 600px;
+    display: block;
+    padding: 5px 20px 0;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    outline: none;
+}
+#contact .form_base:focus {
+    border: #abaaaa;
+}
+#contact::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+    color: #b2b2b2;
+}
+#contact textarea.form_base {
+    min-height: 180px;
+    resize: none;
+    margin: auto;
+}
+#contact input {
+    margin: auto;
+}
+#contact input[name=answer] {
+    display: none;
+}
+fieldset .fa {
+    font-size: 22px;
+    color: #333;
+    cursor: pointer;
+    margin-right: 10px;
+}
+#contact input:checked+.fa {
+    color: #d2d2d2;
+}
+#contact #msg~p {
+    margin: 20px 0 5px;
+}
+#contact #msg~div {
+    justify-content: center;
+    margin-bottom: 10px;
+}
+#contact textarea+span {
+    display: none;
+}
+#contact textarea.alert+span {
+    display: block;
+}
+#contact input:hover {
+    border-bottom: 2px solid #abaaaa;
+    transition: .1s;
+}
+#contact button.form_base {
+    color: #d4d4d4;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin: 30px auto;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 26px;
+    background: transparent;
+    border-radius: 100%;
+    border: none;
+}
+#contact button.form_base:hover {
+    color: red;
+    transition: all .5s;
+}
+fieldset>svg {
+    animation: circle linear infinite 10s;
+    width: 300px;
+    height: 300px;
+    position: absolute; 
+    margin: -65px 0 0 -98px; 
+    cursor: pointer; 
+    pointer-events: none;}
+        .txt1 {
+            font-size: 31px;
+            letter-spacing: 1.5px; 
+            color: #fff;
+        }
+        @keyframes circle {
+            from {transform: rotate(0deg);}
+            to {transform: rotate(360deg);}
+        }
+svg:hover .txt1 {
+    fill:red; 
+    transition: all .5s;
+}
+.add {
+    margin-top: 20px;
+    color: #abaaaa;
+}
+.add p {
+    letter-spacing: 1px;
+    text-align: center;
+}
+.fa {
+    font-size: 15px; 
+    margin: 10px 5px; 
+    cursor: pointer;}
+.fa-map-marker {
+    color:#414141;
+}
+.fa-envelope {
+    color:#414141;
+}  

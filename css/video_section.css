@@ -1,0 +1,99 @@
+#video_section {
+    position: relative;
+}
+#video_section section img {
+    width: 100%;
+    object-fit: cover;
+    min-height: 100vh;
+}
+#video_section section p {
+    margin: 30px;
+    font-size: 40px;
+    font-weight: 900;
+    text-align: center;
+    color: #fff;
+}
+#video_section [class*="sticky"] {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+.sticky_01 {
+    top: 15%;
+}
+.sticky_02 {
+    top: 50%;
+}
+.sticky_03 {
+    top: 85%;
+}
+#video_section+section {
+    background-color: transparent;
+    border: none;
+    color: transparent;
+}
+#video_fix {
+    position: sticky;
+    top: 0;
+    height: 0;
+}
+#video_fix>div {
+    position: absolute;
+    top: 50vh;
+    left: 32%;
+    min-width: 30%;
+    height: 30%;
+    object-fit: cover;
+    margin-top: -200px;
+    overflow: hidden;
+}
+#video_fix>div:nth-child(1) {
+    z-index: 1000;
+    height: 100px;
+}
+#video_fix>div:nth-child(2) {
+    z-index: 900;
+}
+#video_fix>div:nth-child(3) {
+    z-index: 800;
+}
+#video_fix>div>video {
+    display: block;
+    height: 400px;
+    object-fit: cover;
+    margin: auto;
+}
+#video_fix>div> img {
+    display: block;
+    height: 400px;
+    object-fit: cover;
+    margin: auto;
+    width: 711px;
+}
+.name {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.face {
+    text-align: center;
+}
+.face img {
+    width: 40%;
+    object-fit: cover;
+}
+.intro {
+    margin: 30px auto;
+    text-align: center;
+}
+.intro p {
+    margin: 10px 5px;
+    font-size: 18px;
+}
+.intro p:first-child {
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: bold;
+}

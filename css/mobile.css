@@ -1,0 +1,109 @@
+@media screen and (max-width:400px) {
+    h1 {
+        margin: 6px;
+        width: 100px;
+    }
+    #aside-menu {
+        display: none;
+    }
+    i.fa.fa-bars {
+        display: inline;
+        font-size: 60px;
+    }
+    .start img {
+        height: 25vh;
+    }
+    #publishing {
+        height: 30vh;
+        font-size: 30px;
+    }
+    .pbs_l>span {
+        font-size: 50px;
+    }
+    #video_fix {
+        display: none;
+    }
+    #video_fix video {
+        display: none;
+    }
+    #video_section section img {
+        min-height: 35vh;
+        object-fit: fill;
+    }
+    #video_section section p {
+        font-size: 30px;
+        margin: 40px;
+        top: 17%;
+        color: #000;
+    }
+    #video_section section p:nth-child(1) {
+        display: none;
+    }
+    #video_section section p:nth-child(3) {
+        display: none;
+    }
+    #video_section section >div>div {
+        width: 100%;
+    }
+    #video_section section .sticky03 p {
+        color: #000;
+        font-weight: 700;
+    }
+    h2 {
+        font-size: 80px;
+        margin-top: 0;
+    }
+    .name {
+        font-size: 35px;
+    }
+    .intro p:first-child {
+        font-size: 25px;
+    }
+    .intro p {
+        font-size: 15px;
+        font-weight: 500;
+    }
+    .portf li {
+        margin: auto;
+    }
+    .portf li p:nth-child(2) {
+        font-size: 30px;
+        top: 85%;
+    }
+    .portf img {
+        width: 100%;
+        height: 400px;
+        object-fit: inherit;
+    }
+    .portf .hoverbox .span2 {
+        width: 142%;
+    }
+    #port li.on video {
+        width: 360px;
+        height: 500px;
+    }
+    #port li.on img {
+        width: 360px;
+        height: 500px;
+        object-fit: contain;
+    }
+    #port li:nth-child(-n+7).on img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    #port details p {
+        font-size: 12px;
+        font-weight: 500;
+    }
+    #port details a {
+        font-size: 15px;
+        padding: 4px 27px;
+    }
+    #port li:nth-child(-n+7).on details {
+        width: 95%;
+    }
+    #contact .form_base:not(#send_bt) {
+        min-width: 300px;
+    }
+}
