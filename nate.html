@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nate Login</title>
+    <style>
+        /* reset */
+        * {margin:0; padding:0; list-style:none;}
+        .screen_out {display:none;}
+        body {min-width:1060px;}
+        /* header */
+        header {height:35px; border-bottom:1px solid #9f9f9f; background:#f2f2f2;}
+        header ul {display:flex;}
+        header a {display:block; width:78px; height:35px; text-indent:-9999px; overflow:hidden; background:no-repeat 0 0 / 950px url(img/nate_one.png); transition: ease all 0.3s;}
+        header li:nth-child(2) a {background-position-x:-81px; width:80px;}
+        header li:nth-child(3) a {background-position-x:-162px; width:76px;}
+        header li:nth-child(4) a {background-position-x:-243px; width:76px;}
+        header li:hover a {background-position-y:-50px;}
+        /* main */
+        main {height:2214px; background: no-repeat center top / 1299px url(img/nate_bg.png), linear-gradient(180deg, rgba(242,242,242,1) 400px, rgba(242,242,242,0) 400px); padding-top:83px; border-bottom:1px solid #e2e2e2; box-sizing:border-box;}
+        main>div {background:#fff; width:440px; border-radius:8px; margin:auto; padding:40px; box-sizing:border-box; box-shadow: 0 2px 3px 1px rgba(0,0,0,.2); position:relative;}
+        main h1 a {display:block ;width:64px; height:18px; background:center / 64px url(img/nate_logo.png) no-repeat; text-indent:-9999px;overflow: hidden; margin:0 auto 30px;}
+        main fieldset {border:none;}
+        /* id 설명 */
+        main .id_help {width:218px; height:115px; position:absolute; top:-26px; background:no-repeat 0 / 218px url(img/nate_id.png); padding:17px 15px 0; box-sizing:border-box; display:none;}
+        main input:focus+ .id_help {display:block;}
+        main .id_help p {font-size:11px; color:#2d3740; line-height:15px; margin-bottom:5px; }
+        main .id_help p strong {color:#65a4d6}
+        main .id_help p+p {color:#fa4647}
+        main input:not(#auto) {display:block; width:100%; height:50px; border:1px solid #e2e2e2; padding: 0 15px; box-sizing:border-box;}
+        main input[type=password] {margin:5px 0 8px;}
+        main label[for=auto] {font-size:13px; color:#858585;transform:translate(5px, 0); position:absolute; cursor:pointer;}
+        main p+a {position:absolute; right:40px; font-size:11px; color:#858585; }
+        main .auto_help {border:1px solid #fa4647; position:absolute; width:160px; height:60px; box-sizing:border-box; padding:8px 10px 0; line-height:14px; left:-1px; top:0px; background:#fff; font-size:11px; color:#858585; letter-spacing:-1px; display:none;} 
+        main #auto:checked~ .auto_help {display:block;}
+        main .auto_help a {color:#fa4647; margin-left:3px;}
+        main .auto_help a::after {content:""; position:absolute; border-left:3px solid #fa4647; border-top:3px solid transparent; border-bottom:3px solid transparent; margin:4px 0 0 2px;}
+        main button:last-child {display:block; background:#fa4647; width:100%; height:50px; border:none; color:#fff; font-weight:700px; font-size:14px; border-radius:2px; cursor:pointer; margin:20px 0 30px;}
+        main form+p {text-align:center;}
+        main form+p a {color:#9f9f9f; font-size:12px; }
+        main form+p a:not(:last-child) {margin-right:20px;}
+        main form+p a:not(:last-child)::after {content:""; border-left:1px solid #dfe0e7; position:absolute; margin:7px 0 0 12px; height:12px;} 
+        main::before {content:""; position:absolute; width:100% ; height:531px; border-top:1px solid #e2e2e2; border-bottom:1px solid #e2e2e2; top:1022px;}
+        /* footer */
+        footer {height:260px; width:660px; margin:auto; box-sizing:border-box; padding-top:102px; position:relative;}
+        footer h2 {font-size:22px; font-weight:500;}
+        footer address {font-style:normal; font-size:14px; color:#a3a3a3; margin-top:4px;}
+        footer p {position:absolute; right:0; display:flex; gap:20px; top:102px;}
+        footer a {border:1px solid #ccc; width:200px; height:55px; border-radius:2px; text-indent:-9999px; overflow:hidden; background:no-repeat center/ 108px url(img/nate_footer_an.png);}
+        footer a:last-child {background:no-repeat center/ 69px url(img/nate_footer_io.png);}
+    </style>
+</head>
+<body>
+    <header>
+        <h2 class="screen_out">주요서비스</h2>
+        <nav>
+            <ul>
+                <li><a href="#" title="네이트 첫 페이지 바로가기">네이트홈</a></li>
+                <li><a href="#">메일</a></li>
+                <li><a href="#">문서</a></li>
+                <li><a href="#">주소록</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div>
+        <h1><a href="#">네이트메일 로그인</a></h1>
+            <form action="#" method="post">
+                <fieldset>
+                    <legend class="screen_out">로그인정보</legend>
+                    <input type="text" name="user_id" placeholder="네이트 ID">
+                    <div class="id_help">
+                    <p><strong>엠파스, 라이코스, 넷츠고</strong> 아이디는<br>계정까지 입력 해 주세요</p>
+                    <p>예)empal 메일의 경우<br> @empas.com을 입력해주세요</p>
+                    </div>
+                    <input type="password" name="user_pw" placeholder="네이트 비밀번호">
+                    <input type="checkbox" name="auto" id="auto"> <label for="auto">로그인 유지</label>
+                    <p class="auto_help">개인정보 보호를 위해<br>개인PC에서만<br>사용해 주세요. <a href="#">도움말보기</a></p>
+                    <a href="#">IP보안 <strong>ON</strong></a>
+                    <button type="submit">로그인</button>
+                </fieldset>
+            </form>
+                <p>
+                    <a href="#">아이디찾기</a>
+                    <a href="#">비밀번호 찾기</a> 
+                    <a href="#">회원가입</a>
+                </p>
+        </div>
+        <h2 class="screen_out">네이트메일의 특징</h2>
+        <ul class="screen_out">
+            <li>
+                <p>쉽고 빠른 편집</p>
+                <p>메일 선택 후 내 메일함으로 끌어당겨 보세요.<br>손쉽게 이동 및 삭제를 할 수 있습니다.</p></li>
+            <li>
+                <p>스마트한 우측 뷰</p>
+                <p>쓰기에서 자주 사용하는 메일주소를 저장할 수 있으며 <br>편지함에서는 분할 모드로 미리보기를 할 수 있습니다.</p></li>
+            <li>
+                <p>간편하고 빠른 간단쓰기</p>
+                <p>메일 쓰기에서 우측 아이콘을 통해 간단쓰기가 가능합니다.</p></li>
+        </ul>
+    </main>
+    <footer>
+        <h2>네이트메일 APP</h2>
+        <p>
+        <a href="#">Android</a>
+        <a href="#">iOS</a>
+        </p>
+        <address>&copy; SK Communication</address>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="genieimg/icon.png" rel="shortcut icon">
+    <title>Genie Music</title>
+</head>
+<style>
+/* reset */
+* {margin:0; padding:0; list-style:none;}
+:root {--MainColor:#ffffff; --SubColor:#000000;}
+a {text-decoration:none; color:var(--MainColor); cursor:pointer; font-weight:600;}
+img {width:100%; height:100%; vertical-align:middle;}
+#gnb {overflow:hidden;}
+
+
+#bg.blur {position:fixed; top:0; left:0; width:100%; min-height:100vh; background-color:rgba(0, 0, 0, .5); filter:blur(15px) drop-shadow(10px 10px 10px black); z-index:10;}
+video {width:100vw; height:100vh; object-fit:cover; position:fixed;}
+#top {position:fixed; left:0; top:0; width:100%; z-index:2; background-color:transparent;}
+#toop {display:flex; flex-wrap:wrap; justify-content:center; max-width:1048px; margin:0 auto; padding:24px 0;}
+#top.scrolled {background-color:var(--SubColor);}
+#toop.scrolled {background-color: var(--SubColor);}
+#top .logo {width:164px; height:32px;}
+#top nav {display:flex; box-sizing:border-box; margin-left:auto; justify-content:center;}
+.menu {display:flex; justify-content:center; width:auto; height:auto; z-index:2;}
+.menu > li {position:relative;}
+.menu > li + li {margin-left:85px;}
+.inner {display:none; position:absolute; min-width:100px; padding:30px 0; transition:all .5s;}
+.inner li {position:relative; min-height:26px; margin-bottom:10px;}
+.inner li a {color:#666; font-size:16px;}
+.inner li a:hover {border-bottom:1px solid #fff; color:var(--MainColor);}
+#toop:hover .inner {display:block;}
+
+#hover {position:fixed; top:0; left:0; width:100%; height:0; background-color:var(--SubColor); z-index:1;}
+.hh {height:512px;}
+
+#sct1 {position:relative; min-height:95vh; height:100%; overflow:hidden; transition:all .3s ease-in-out;}
+#sct1 ul {display:flex; width:100vw; overflow:hidden;}
+#sct1 ul li {width:100vw;}
+.slide {width:100vw; position:absolute; bottom:13.2%; min-width:1048px; overflow:hidden;}
+.logo01 {width:192px; height:40px; margin:0 auto;}
+.logo02 {width:83px; height:40px; margin:0 auto;}
+.logo03 {width:117px; height:40px; margin:0 auto;}
+.txt_container {width:100%; cursor:grab;}
+.slide_txt {text-align:center; font-size:40px; font-weight:bold; margin:20px 0 0; color:var(--MainColor); line-height:72px;}
+#sct1 #page {position: absolute; top:97%; left:50%; transform:translateX(-50%); display:flex; gap:10px;}
+#sct1 #page span {width:16px; height:16px; border-radius:50%; background:#fff; opacity:.2; cursor:pointer; transition:ease all .3s;}
+#sct1 #page span.on,#sct0 #page span:hover {width:16px; height:8px; padding:0 0 0 8px; box-sizing:border-box; border-radius:4px; opacity:1; margin:4px 0;}
+
+.main {min-height:84.25vh;}
+.box_wrap {margin-top:140px; padding-bottom:200px; position:relative; margin:0 auto; max-width:1048px; min-height:1154px; background-color:transparent; z-index:19;}
+.main [class*="main_box"] {position:absolute; width:328px; border-radius:20px; box-shadow:0 0 20px 0 rgba(0, 0, 0, .2); margin-top:0; transition: margin-top .3s ease-in-out; overflow:hidden;}
+.main a {position:relative; display:block; margin-top:30px; font-size:12px; font-weight:bold; color:var(--SubColor);}
+h3 {margin-bottom:20px; color:var(--SubColor); font-size:14px; font-weight:bold;}
+.txt_box p {font-size:18px; font-weight:bold;}
+.img_box {padding:0; border-top-left-radius:20px; border-top-right-radius:20px; overflow:hidden;}
+.con_box {padding:30px 30px 40px; box-sizing:border-box; border-bottom-left-radius:20px; border-bottom-right-radius:20px; background-color:var(--MainColor);}
+
+.main .main_box01 {top:0; left:0; height:266px; background-color:var(--MainColor); box-sizing:border-box; padding:30px;}
+.main_box01 .txt_box p {width:292px;}
+.main_box01 > p {margin-top:10px; font-size:14px; line-height:1.86;}
+.main .main_box02 {top:0; left:360px; height:250px; background-color:var(--MainColor); box-sizing:border-box; padding:30px;}
+.rate {display:flex; align-items:flex-end; justify-content:space-between; margin-top:30px; padding-bottom:20px; border-bottom:1px solid #161616; font-family:'Roboto';}
+.amount {font-size:36px; font-weight:bold;}
+.creas {font-size:14px;}
+.creas > span::before {background:url(geniemusic/rate_down.png) no-repeat center; background-size:100%;}
+.main_box02 p {margin-top:10px; font-size:12px; color:#666; text-align:right; font-family: 'Roboto';}
+.main_box03 {top:0; right:0;}
+.main_box03 .txt_box {height:238px;}
+
+.main_box04 {top:282px; left:360px;}
+.main_box04 ul {margin-top:20px;}
+.main_box04 ul li {position:relative; border-bottom:1px solid #dedede;}
+.main_box04 ul li a {display:inline-block; width:100%; padding:25px 0; box-sizing:border-box; font-weight:bold; color:#161616; font-size:14px; margin-top:0;}
+.main_box04 ul li a::after {content:'>'; position:absolute; right:0; font-weight:normal;}
+
+.main_box05 {top:298px; left:0; height:412px;}
+.main_box05 .txt_box {height:212px;}
+.main_box06 {top:590px; right:0;}
+.main_box07 {top:742px; left:0;}
+.main_box08 {top:654px; left:360px; background-color:var(--SubColor);}
+.main_box08 a {margin-top:0;}
+.main_box08_video::before {content:""; width:100%; height:100%; position:absolute; top:0; left:0; background:#0000004d url(geniemusic/bt_youtube.png) no-repeat center; background-size:60px auto;}
+.main_video {position:relative; overflow:hidden; width:100%; height:175px; border-top-left-radius:20px; border-top-right-radius:20px; padding:0;}
+.label_box {padding:20px 30px; box-sizing:border-box; background-color:var(--SubColor); border-bottom-left-radius:20px; border-bottom-right-radius:20px;}
+.main_box08 ul {display:flex; align-items:center; font-size:12px; color:#0096ff;}
+.main_box08 ul li {margin-right:5px;}
+.main_box08 p {margin-bottom:0; color:var(--MainColor); font-size:14px;}
+
+footer {min-height:5.75vh;}
+.footer {width:100%; position:absolute; border-top:1px solid #e8e8e8; background-color:var(--MainColor); z-index:30;}
+.footer_pc {display:flex; align-items:center; justify-content:space-between; max-width:1048px; margin:0 auto; padding:48px 0; box-sizing:border-box; border-top:1px solid #e8e8e8;}
+.copy {color:#999; font-size:12px;}
+.footer_pc ul {display:flex;}
+.footer_pc ul a {color:#999; font-size:14px;}
+.footer_pc ul a:hover {color:#161616;}
+.footer_pc ul li + li {margin-left:32px;}
+.footer_pc ul li:last-child {color:#666;}
+
+.footer_mw {display:none;}
+</style>
+<body>
+<header>
+<section id="top">
+<div id="toop">
+<h1 class="logo"><a href="#"><img src="genieimg/logo.png" alt="logo"></a></h1>
+<nav>
+    <ul id="gnb" class="menu">
+        <li>
+            <a href="#">MUSIC</a>
+            <ul class="inner">
+                <li><a href="#">회사소개</a></li>
+                <li><a href="#">ESG경영</a></li>
+                <li><a href="#">윤리경영</a></li>
+                <li><a href="#">기업지배구조</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">LOVE</a>
+            <ul class="inner">
+                <li><a href="#">지니</a></li>
+                <li><a href="#">공연</a></li>
+                <li><a href="#">투자/유통</a></li>
+                <li><a href="#">사업제휴</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">PEOPLE</a>
+            <ul class="inner">
+                <li><a href="#">지니인</a></li>
+                <li><a href="#">복리후생</a></li>
+                <li><a href="#">스토리</a></li>
+                <li><a href="#">채용공고</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">HAPPINESS</a>
+            <ul class="inner">
+                <li><a href="#">주가정보</a></li>
+                <li><a href="#">IR데이터</a></li>
+                <li><a href="#">증권사리포트</a></li>
+                <li><a href="#">재무정보</a></li>
+                <li><a href="#">공고 및 공시</a></li>
+                <li><a href="#">보도자료</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+</div>
+</section>
+<div id="hover" class="hh">
+</div>
+</header>
+<main>
+<section id="sct1">
+    <ul id="bg">
+        <li>
+            <video class="video" loop autoplay playsinline data-keepplaying muted="muted">
+                <source type="video/mp4" src="genieimg/main_genie_video01.mp4">
+            </video>
+            <div class="text">
+                <div class="slide">
+                    <div class="slide_container">
+                        <div class="txt_container">
+                            <h2 class="logo01"><img src="genieimg/logo.png"></h2>
+                            <div class="slide_txt">
+                                <p>음악을 사랑하는 사람들이</p>
+                                <p>더 행복할 수 있도록</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <video class="video" loop autoplay playsinline data-keepplaying muted="muted">
+                <source type="video/mp4" src="genieimg/main_genie_video02.mp4">
+            </video>
+            <div class="slide">
+                <div class="slide_container">
+                    <div class="txt_container">
+                        <h2 class="logo02"><img src="genieimg/genie.png"></h2>
+                        <div class="slide_txt">
+                            <p>새로운 즐거움의 시작</p>
+                            <p>지니뮤직</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <video class="video" loop autoplay playsinline data-keepplaying muted="muted">
+                <source type="video/mp4" src="genieimg/main_genie_video03.mp4">
+            </video>
+            <div class="slide">
+                <div class="slide_container">
+                    <div class="txt_container">
+                        <h2 class="logo03"><img src="genieimg/stayg.png"></h2>
+                        <div class="slide_txt">
+                            <p>Beyond Stage. StayG</p>
+                            <p>현장의 느낌 그대로 스테이지</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div id="page"></div>
+</section>
+</section>
+<section id="sct2">
+    <div class="main">
+        <div class="box_wrap">
+            <div class="main_box01">
+                <div class="txt_box">
+                    <h3>NEWS</h3>
+                    <p>지니뮤직, '빌드업: 보컬 보이그룹 서바이벌'서 탄생한 최고의 ...</p>
+                </div>
+                    <p>&#9654; 지니뮤직, 빌드업 프로그램서 최종 선발된 최상위 3개팀과 공연 예정 &#9654; 6월 부 ···</p>
+                    <a href="#">전체보기</a>
+            </div>
+            <div class="main_box02">
+                <h3>STOCK</h3>
+                <div class="rate">
+                    <div class="amount">3,140</div>
+                    <div class="creas"><span> 20</span></div>
+                </div>
+                <p>2024.03.26 17:26</p>
+                <a href="#">주식정보</a>
+            </div>
+            <div class="main_box03">
+                <div class="img_box">
+                    <img src="genieimg/vision.png" alt="지니 메인 비전 이미지">
+                </div>
+                <div class="txt_box con_box">
+                    <h3>VISION</h3>
+                    <p>음악을 사랑하는 사람들을 행복하게 하는 기업 지니뮤직입니다.</p>
+                    <a href="#">지니뮤직 소개</a>
+                </div>
+            </div>
+            <div class="main_box04">
+                <div class="con_box">
+                    <div class="txt_box">
+                    <p>지니뮤직은 구성원의 성장과 행복을 응원합니다.</p>
+                    </div>
+                    <ul>
+                        <li><a href="#">지니인</a></li>
+                        <li><a href="#">복리후생</a></li>
+                        <li><a href="#">스토리</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main_box05">
+                <div class="img_box">
+                    <img src="genieimg/partner.png" alt="지니 메인 파트너 이미지">
+                </div>
+                <div class="txt_box con_box">
+                    <h3>PARTNERSHIP</h3>
+                    <p>파트너와 함께 성장하는 행복한 사업을 만들어 나갑니다.</p>
+                    <a href="#">사업제휴</a>
+                </div>
+            </div>
+            <div class="main_box06">
+                <div class="img_box">
+                    <img src="genieimg/bg_genie.png" alt="지니 뮤직 로고">
+                </div>
+                <div class="txt_box con_box">
+                    <h3>지니</h3>
+                    <p>음악으로의 행복, 지니가 함께 합니다.</p>
+                    <a href="#">서비스 소개</a>
+                </div>
+            </div>
+            <div class="main_box07">
+                <div class="img_box">
+                    <img src="genieimg/bg_stayg.png" alt="스테이지 로고">
+                </div>
+                <div class="txt_box con_box">
+                    <h3>공연</h3>
+                    <p>아티스트와 팬들이 함께 하는 온&오프라인 공연, 스테이지</p>
+                    <a href="#">서비스 소개</a>
+                </div>
+            </div>
+            <div class="main_box08">
+                <div class="main_video">
+                    <a class="box08_video" href="https://youtu.be/JdQqkPX5DJg" target="_blank" title="genie youtube 링크 이동">
+                        <img src="genieimg/yerin.jpg" alt="예린 무대">
+                    </a>
+                </div>
+                <div class="label_box">
+                <ul>
+                    <li>#예린</li>
+                    <li>#YERIN</li>
+                    <li>#ARIA</li>
+                </ul>
+                <p>[PLAY COLOR] 예린(YERIN)- ARIA</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+<footer class="footer">
+<div class="footer_pc">
+    <div class="copy">
+        <p>COPYRIGHT (C) GENIE MUSIC CORP.ALL RIGHTS RESERVED</p>
+    </div>
+    <ul>
+        <li><a href="">사업제휴</a></li>
+        <li><a href="">개인정보처리방침</a></li>
+    </ul>
+</div>
+<div class="footer_mw">
+    <ul>
+        <li>사업제휴</li>
+        <li>개인정보처리방침</li>
+    </ul>
+    <div class="add_mw">
+        <address>
+        <div>
+            <p>(주) 지니뮤직</p>
+            <p>서울특별시 강남구 역삼동 809-10 한석타워 4-9층</p>
+        </div>
+        <div>
+            <p>대표이사 : 박현진</p>
+            <p>사업자등록번호: 314-81-03453</p>
+            <p>통신판매업 신고번호: 2013-서울강남-01302</p>
+            <p>온라인음악서비스제공업 신고번호: 제 24104-2007-1호</p>
+        </div>
+        </address>
+    </div>
+    <div class="copy_mw">
+        <p>&copy; GENIE MUSIC CORP.ALL RIGHTS RESERVED</p>
+    </div>
+</div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js">
+</script>
+
+<script>
+jQuery(document).ready(function($){
+    $("#gnb,#hover").mouseenter(function(e){
+        $("#hover").addClass("active");
+        $("#gnb").stop().animate({height:320+32},320);
+        $("#hover").stop().animate({height:320},320);
+    }).focusin(function(){
+        $("#gnb").mouseenter();
+    });
+    $("#gnb,#hover").mouseleave(function(e){
+        $("#hover").removeClass("active");
+        $("#gnb").stop().animate({height:32}, 320);
+        $("#hover").stop().animate({height:0},320);
+    }).focusout(function(){
+        $("#gnb").mouseleave();
+    });
+    
+    $("#gnb,#hover").mouseenter(function(e){
+        $("#gnb,#gnb>li>ul").stop().animate({height:320+32},320);
+        $("#hover").stop().animate({height:320},320);
+    });
+});
+
+var li_first = $("#sct1 li:eq(0)").clone();
+$("#sct1 ul").append(li_first); 
+var li_length = $("#sct1 li").length;
+$("#sct1 ul").width(li_length*100+"%")
+
+var span="";  
+for(var i=0;i<li_length-1;i++){
+    span += "<span></span>"
+}
+
+$("#page").html(span);
+$("#page span:eq(0)").addClass("on");
+
+var li_width = $("#sct1 li").width();
+var n = 0;
+setInterval(function() {
+    n++;
+    $("#sct1 ul").animate({
+    marginLeft:"-"+li_width*n+"px"
+    },500, function() {
+        if(n==3) {
+            n=0;
+            $("#sct1 ul").css("margin-left",0)
+        }
+    });
+    $("#page span").removeClass("on");
+    $("#page span").eq(n).addClass("on");
+    if(n==li_length-1) $("#page span").eq(0).addClass("on")
+}, 10000);
+
+$(document).ready(function() {
+    $(window).scroll(function() {
+        var scrollTop = $(this).scrollTop();
+        if (scrollTop > 590) {
+            $('#toop, #top').addClass('scrolled');
+        } else {
+            $('#toop, #top').removeClass('scrolled');
+        }
+        if (scrollTop > 590) {
+            $('#bg').addClass('blur');
+        } else {
+            $('#bg').removeClass('blur');
+        }
+    });
+});
+
+$(document).ready(function() {
+    $(window).scroll(function() {
+        var scrollTop = $(this).scrollTop();
+        if (scrollTop > 590) {
+            $('video').each(function() {
+                this.pause();
+            });
+        } else {
+            $('video').each(function() {
+                this.play();
+            });
+        }
+    });
+});
+
+</script>
+</body>
+</html>
